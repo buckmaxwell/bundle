@@ -1,0 +1,14 @@
+
+-- return shared words between two posts
+MATCH (n:Reflection {id:'3stmh8'})-->(w)<--(n2:Reflection {id:'3stoxn'})
+return w;
+
+-- return the 200 least important words
+
+START n=node(*)
+MATCH (n)-[r]-()
+WITH n, count(r) as c
+RETURN n, c
+ORDER BY c DESC
+limit 200
+
